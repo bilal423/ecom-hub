@@ -24,7 +24,8 @@ module.exports = {
           '@app/components': './app/components',
           '@app/store':  './app/store',
           '@app/services': './app/services/',
-          '@app/constants': './app/constants/'
+          '@app/constants': './app/constants/',
+          '@app/utils': './app/utils/'
         },
       },
     ],

@@ -11,7 +11,6 @@ const { width, height } = Dimensions.get("window");
 export default StyleSheet.create({
     container: {
         width,
-        height,
         backgroundColor: colors.secondaryBgColor,
         paddingVertical: verticalScale(100),
         paddingHorizontal: 16,
@@ -41,6 +40,10 @@ export default StyleSheet.create({
         width: "100%",
         backgroundColor: colors.primaryColor,
         height: 50
+    },
+    disabledButtonStyle: {
+        backgroundColor: colors.primaryColor,
+        opacity: 0.3
     },
     loginButtonText: {
         color: colors.textFlatColor,
@@ -78,5 +81,14 @@ export default StyleSheet.create({
         textAlign: "center",
         textTransform: "capitalize",
         textAlignVertical: "center"
+    },
+    loadingContainer: {
+        width,
+        height,
+        position: "absolute",
+        top: 0,
+        backgroundColor: "rgba(0,0,0,0.15)",
+        zIndex: 1000,
+        justifyContent: "center"
     }
 });

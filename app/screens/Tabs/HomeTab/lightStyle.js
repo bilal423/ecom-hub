@@ -10,6 +10,7 @@ const { height } = Dimensions.get("screen");
 export default StyleSheet.create({
     pageWrapper: {
         backgroundColor: colors.secondaryBgColor,
+        marginBottom:  height * 0.1
     },
     containerStyle: {
         padding: 20,

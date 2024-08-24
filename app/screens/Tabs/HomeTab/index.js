@@ -8,12 +8,17 @@ import RecentProducts from "@app/components/Products/Recent-Products";
 
 import Categories from "@app/components/Products/Categories";
 
+import HomeHeaderComponent from "@app/components/Home/Home-Header";
+
 import lightStyle from './lightStyle';
+import { useSelector } from "react-redux";
 
 
 
 
 const HomeTab = ({ navigation }) => {
+
+    const { value: user } = useSelector((state) => state.user);
     
     const style = lightStyle;
 
@@ -22,9 +27,8 @@ const HomeTab = ({ navigation }) => {
 
     return (
         <SafeAreaView style={style.pageWrapper}>
-            <ScrollView contentContainerStyle={{
-                marginBottom: 50
-            }}>
+            <HomeHeaderComponent user = { user || {}}/>
+            <ScrollView>
                 <View style={style.containerStyle}>
                     <View style={style.imageCarouselWapper}>
                         <CarouselComponent images={images || []}/>
@@ -35,7 +39,7 @@ const HomeTab = ({ navigation }) => {
                             <Text style={style.categoryTitleText}>New In Trends</Text>
                         </View>
                         <View>
-                            <RecentProducts/>
+                            <RecentProducts navigation={navigation}/>
                         </View>
                     </View>
                     <View style={style.categoryWrapper}>

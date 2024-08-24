@@ -10,19 +10,19 @@ import ProductCard from '@app/components/Products/Product-Card';
 
 import { getRecentProducts } from "@app/store/products/saga";
 
+import { setRecentProducts as setRecentProductsReducer } from "@app/store/products/reducer";
+
 import lightStyle from './lightStyle';
 
 
-const RecentProducts = () => {
+const RecentProducts = ({ navigation }) => {
     const styles = lightStyle;
 
     const dispatch = useDispatch();
 
     const [isLoading, setLoading] = useState(true);
 
-    const [products, setProducts] = useState([]);
-
-    
+    const { recentProducts: products } = useSelector((state) => state?.products);
 
     useEffect(() => {
         getProducts();
@@ -30,10 +30,15 @@ const RecentProducts = () => {
 
 
     const getProducts = async () => {
+        if((products || []).length > 0) {
+            setLoading(false);
+            return;
+        }
+
         await dispatch(
             getRecentProducts({
                 onSuccess: (data) => {
-                    setProducts(data || []);
+                    dispatch(setRecentProductsReducer(data || []));
                     setLoading(false);
                 },
                 onError: (error) => {
@@ -59,7 +64,7 @@ const RecentProducts = () => {
                         {
                             (products || []).map((product, index) => {
                                 return (
-                                    <ProductCard product = { product } key = {index}/>
+                                    <ProductCard productType={"recent-products"} navigation={navigation} product = { product } key = {index}/>
                                 )
                             })
                         }

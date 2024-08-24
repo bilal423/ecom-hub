@@ -9,6 +9,10 @@ const { width, height } = Dimensions.get("window");
 
 
 export default StyleSheet.create({
+    pageWrapper: {
+        backgroundColor: colors.secondaryBgColor,
+        minHeight: height
+    },
     container: {
         width,
         height,
@@ -118,5 +122,18 @@ export default StyleSheet.create({
         fontSize: 16,
         fontWeight: 500,
         textTransform: "capitalize"
+    },
+    disabledButtonStyle: {
+        backgroundColor: colors.primaryColor,
+        opacity: 0.3
+    },
+    loadingContainer: {
+        width,
+        height,
+        position: "absolute",
+        top: 0,
+        backgroundColor: "rgba(0,0,0,0.15)",
+        zIndex: 1000,
+        justifyContent: "center"
     }
 });

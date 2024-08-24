@@ -67,7 +67,7 @@ const Categories = ({ navigation }) => {
                                     </View>
                                     <View style={styles.categoryTitle}>
                                         <Pressable onPress={() => {
-                                            navigation.navigate("home", { screen: "ShopTab", params: { category: slug }})
+                                            navigation.navigate("category", {catName: name, category: slug })
                                         }}>
                                             <Text style={styles.categoryTitleText}>{ name || ""}</Text>
                                         </Pressable>

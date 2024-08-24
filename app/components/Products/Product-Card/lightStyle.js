@@ -64,5 +64,17 @@ export default StyleSheet.create({
         bottom: -10,
         justifyContent: "center",
         alignItems: "center"
+    },
+    ratingContainer: {
+        flexDirection: "row",
+        justifyContent: "flex-start",
+        marginBottom: 10
+    },
+    ratingText: {
+        fontSize: 13,
+        color: colors.textSecondaryColor,
+        fontFamily: "Rubik-Regular",
+        marginLeft: 5
     }
+
 })

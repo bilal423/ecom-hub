@@ -1,18 +1,43 @@
 import React, { useEffect } from "react";
 
-import { View, Text, SafeAreaView } from "react-native";
+import { View, Text, SafeAreaView, ScrollView } from "react-native";
+
 import { useSelector } from "react-redux";
+
+import lightStyle from './lightStyle';
 
 
 
 const ProfileTab = ({ navigation }) => {
-    // const { user } = useSelector("user");
+    const styles = lightStyle;
+
+    const { user } = useSelector((state) => state.user);
+
+
+    useEffect(() => {
+        // redirectUser();
+    }, [navigation]);
+
+
+    const redirectUser = () => {
+        if(!user) {
+            navigation.navigate("login");
+            return;
+        }
+    }
+
+
+
 
     return (
-        <SafeAreaView>
-            <View>
-                <Text>Profile Tab</Text>
-            </View>
+        <SafeAreaView style={styles.pageWrapper}>
+            <ScrollView>
+                <View style={styles.pageHeaderContainer}>
+                    <Text style={styles.pageHeading}>
+                        My Profile
+                    </Text>
+                </View>
+            </ScrollView>
         </SafeAreaView>
     )
 }

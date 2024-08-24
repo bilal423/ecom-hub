@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { View, Text, SafeAreaView, ScrollView, StatusBar, Pressable } from 'react-native';
+import { View, Text, SafeAreaView, ScrollView } from 'react-native';
 
 import { Button } from '@rneui/base';
 

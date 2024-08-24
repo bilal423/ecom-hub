@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 
-import { View, Text, SafeAreaView, ScrollView, Image } from "react-native";
+import { View, SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
 
-import { Skeleton, LinearGradient } from "@rneui/base";
+import { Skeleton, LinearGradient, Icon } from "@rneui/base";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import ProductCard from "@app/components/Products/Product-Card";
 
 import { getProducts as getProductsApi } from "@app/store/products/saga";
+
+import { setProducts as setProductsReducer } from "@app/store/products/reducer";
 
 import lightStyle from './lightStyle';
 
@@ -22,11 +24,24 @@ const CategoryTab = ({ navigation }) => {
 
     const [isLoading, setLoading] = useState(true);
 
-    const [products, setProducts] = useState([]);
+    const { products } = useSelector((state) => state.products);
+
 
     useEffect(() => {
         navigation.setOptions({
             title: "Shop",
+            headerRight: () => {
+                return (
+                    <TouchableOpacity style={{
+                        marginRight: 5
+                    }} onPress={() => {
+                        // setToggleModal(!toggleModal);
+                    }} >
+                        <Icon name={"search-outline"} type={'ionicon'} color={ "#222"}/>
+                    </TouchableOpacity>
+                )
+            }
+                
         });
 
         getProducts();
@@ -34,11 +49,15 @@ const CategoryTab = ({ navigation }) => {
 
 
     const getProducts = async () => {
+        if((products || []).length > 0) {
+            return;
+        }
+
         await (
             dispatch(
                 getProductsApi({
                     onSuccess: (data) => {
-                        setProducts(data);
+                        dispatch(setProductsReducer(data));
                         setLoading(false);
                     },
                     onError: (error) => {
@@ -87,7 +106,7 @@ const CategoryTab = ({ navigation }) => {
                                 (products || []).map((product, index) => {
                                     return (
                                         <View style={styles.product} key={index}>
-                                            <ProductCard additionalStyles={{
+                                            <ProductCard productType={"products"} navigation={navigation} additionalStyles={{
                                                 width: "100%",
                                                 maxWidth: "100%",
                                                 minHeight: 300

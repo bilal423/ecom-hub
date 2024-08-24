@@ -24,7 +24,28 @@ export default StyleSheet.create({
     errorText: {
         color: colors.dangerTextColor,
         fontSize: 14,
-        fontFamily: "Metropolis-Mediumr",
+        fontFamily: "Metropolis-Medium",
         fontWeight: 500,
+    },
+    iconWrap: {
+        position: "absolute",
+        right: 10,
+        top: 18
+    },
+    label: {
+        marginBottom: 10,
+        fontFamily: "Metropolis-Medium",
+        fontSize: 16,
+        fontWeight: 600,
+        color: colors.textPrimaryColor,
+        justifyContent: "center"
+    },
+    labelRequired: {
+        justifyContent: "center",
+        color: colors.dangerTextColor
+    },
+    labelWrapper: {
+        flexDirection: "row",
+        gap: 5
     }
 })

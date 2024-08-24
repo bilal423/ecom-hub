@@ -3,7 +3,7 @@ import { API_URL } from "@app/constants/app-constants";
 
 const request = async (config) => {
     let defaultHeaders  = {
-        // "Content-Type": "application/x-www-form-urlencoded",
+        "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
         "Accept": '*'
     }
